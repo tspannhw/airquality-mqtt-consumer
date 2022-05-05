@@ -1,12 +1,8 @@
 package app.flipn.airqualitymqttconsumer.service;
 
-import app.flipn.airqualitymqttconsumer.config.PulsarConfig;
 import app.flipn.airqualitymqttconsumer.model.GenericMessage;
-import app.flipn.airqualitymqttconsumer.model.Observation;
 import org.eclipse.paho.client.mqttv3.IMqttClient;
 import org.eclipse.paho.client.mqttv3.MqttException;
-import org.eclipse.paho.client.mqttv3.MqttMessage;
-import org.eclipse.paho.client.mqttv3.MqttPersistenceException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;

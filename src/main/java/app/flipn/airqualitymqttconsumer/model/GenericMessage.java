@@ -5,15 +5,10 @@ import java.util.StringJoiner;
 public class GenericMessage {
 
     private int id;
-
     private String uuid;
-
     private String payload;
-
     private int qos;
-
     private String description;
-
     private long timestamp;
 
     public GenericMessage(int id, String uuid, String payload, int qos, String description, long timestamp) {
