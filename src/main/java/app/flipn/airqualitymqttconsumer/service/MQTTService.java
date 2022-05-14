@@ -30,20 +30,14 @@ public class MQTTService {
     @Autowired
     private IMqttClient mqttClient;
 
-    /**
-     *
-     * @return List<GenericMessage> messages
-     */
-    public List<GenericMessage> consume() {
-        List<GenericMessage> messages = new ArrayList<GenericMessage>();
+
+    public void consume() {
         try {
             CountDownLatch countDownLatch = new CountDownLatch(10);
+            log.info("topic:" + topicName);
             mqttClient.subscribeWithResponse(topicName, (s, mqttMessage) -> {
-                GenericMessage msg = new GenericMessage();
-                msg.setId(mqttMessage.getId());
-                msg.setPayload(new String(mqttMessage.getPayload()));
-                msg.setQos(mqttMessage.getQos());
-                messages.add(msg);
+                log.info("MQTT ID:"+mqttMessage.getId());
+                log.info("MQTT:" + new String(mqttMessage.getPayload()));
                 countDownLatch.countDown();
             });
 
@@ -55,7 +49,5 @@ public class MQTTService {
         } catch (MqttException e) {
             log.error("MQTT Error", e);
         }
-
-        return messages;
     }
 }

@@ -32,29 +32,14 @@ public class AirQualityMQTTConsumerApp  implements CommandLineRunner {
 	@Autowired
 	private MQTTService mqttService;
 
-	/**
-	 *
-	 */
-	private void display() {
-		List<GenericMessage> mqttList = mqttService.consume();
-		if ( mqttList != null & mqttList.size() > 0){
-			for (GenericMessage message : mqttList) {
-				if ( message != null) {
-					System.out.println("MQTT:" + message);
-				}
-			}
-		}
-	}
-
 	@Scheduled(initialDelay = 0, fixedRate = 30000)
 	public void repeatRun()
 	{
-		log.debug("Time:" + Calendar.getInstance().getTime());
-		display();
+		mqttService.consume();
 	}
 
 	@Override
 	public void run(String... args) {
-		display();
+		mqttService.consume();
 	}
 }
